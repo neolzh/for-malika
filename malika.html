@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="malika.css">
+    <title>Малика давай встречаться!</title>
+    <script>
+        var buttonTexts = ["Нет", "пачиму", "ну пажалста", "я в депрессии", "я щас плакать буду", "хнык хнык"];
+        var currentIndex = 0;
+        var fontSizeIncrement = 10; 
+
+        function changeButtonText() {
+            var buttonNo = document.querySelector('.button-no');
+            var buttonYes = document.querySelector('.button-yes');
+
+            buttonNo.value = buttonTexts[currentIndex];
+            currentIndex = (currentIndex + 1) % buttonTexts.length;
+
+            var currentWidth = buttonYes.offsetWidth;
+            var currentHeight = buttonYes.offsetHeight;
+            var newWidth = currentWidth + 50; 
+            var newHeight = currentHeight + 50;
+            buttonYes.style.width = newWidth + "px";
+            buttonYes.style.height = newHeight + "px";
+
+            var currentFontSize = parseInt(window.getComputedStyle(buttonYes).fontSize);
+            var newFontSize = currentFontSize + fontSizeIncrement;
+            buttonYes.style.fontSize = newFontSize + "px";
+
+            buttonYes.classList.add('enlarged');
+        }
+
+        
+        function showChosenGif() {
+            var body = document.querySelector('body');
+            body.innerHTML = '';  
+
+            var newText = document.createElement('h1');
+            newText.innerText = 'УРАААААААААААААААААА';
+            body.appendChild(newText);
+
+
+            var chosenGif = document.createElement('img');
+            chosenGif.src = 'https://media.tenor.com/vAVuThNDgK4AAAAi/cheriuzzina.gif';  
+
+            body.appendChild(chosenGif);
+        }
+    </script>
+</head>
+<body>
+    <h1 class="header">
+        Малика давай встречаться?
+    </h1>
+    <img class="gif" src="https://media.tenor.com/wkzCX9s5kxQAAAAi/0906-peacegoma.gif" alt="gif">
+    <div class="buttons">
+        <input type="button" value="Давай" onclick="showChosenGif()" class="button-yes"></input>
+        <input type="button" value="Нет" onclick="changeButtonText()" class="button-no"></input> 
+    </div> 
+</body>
+</html>
